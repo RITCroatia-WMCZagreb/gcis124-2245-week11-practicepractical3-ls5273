@@ -1,4 +1,11 @@
 /*
+@ASSESSME.USERID: ls5273
+@ASSESSME.AUTHOR: Lana Sorak
+@ASSESSME.LANGUAGE: JAVA
+@ASSESSME.ANALYZE: YES
+*/
+
+/*
 This problem tests your knowledge of Threads. Write a program named 
 SimpleThreading.java to create several threads and a simple counter. The main 
 program will instantiate an object of class Threads, calling its constructor. 
@@ -50,6 +57,62 @@ to code this any way you want as long as the threads run concurrently.
 
 */
 
+
+public class SimpleThreading {
+    private int counter;
+    private Object lock;
+   
+    public SimpleThreading() throws InterruptedException {
+        this.counter = 90;
+        this.lock = new Object();
+
+        Thread t1 = new Thread(new MyThread(1));
+        Thread t2 = new Thread(new MyThread(2));
+        Thread t3 = new Thread(new MyThread(3));
+        Thread t4 = new Thread(new MyThread(4));
+        Thread t5 = new Thread(new MyThread(5));
+
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+        t5.start();
+
+        t1.join();
+        t2.join();
+        t3.join();
+        t4.join();
+        t5.join();
+      
+    }
+
+    //Inner class
+    class MyThread implements Runnable {
+        private int name;
+
+        public MyThread(int name) {
+            this.name = name;
+        }
+
+        @Override
+        public void run() {
+            for(int i=0;i<10;i++){
+                synchronized(lock) {
+                    if(counter==0) break;
+                    counter -= 3;
+                    System.out.println("Thread " + this.name + " counter " + counter);
+                }
+           }
+        }
+
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        new SimpleThreading();
+    }
+}
+
+/* 
 import java.util.ArrayList;
 
 public class SimpleThreading {
@@ -64,12 +127,12 @@ public class SimpleThreading {
             Thread t = new Thread(new InnerThread(i));
             t.start();//run the threads
             threads.add(t);
-            /*try {
+            try {
                 t.join();
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
-            }//nono, do not call this here*/
+            }//nono, do not call this here
         }
 
         for(Thread t: threads){
@@ -121,4 +184,4 @@ public class SimpleThreading {
         
     }
     
-}
+}*/

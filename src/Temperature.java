@@ -1,3 +1,10 @@
+/*
+@ASSESSME.USERID: ls5273
+@ASSESSME.AUTHOR: Lana Sorak
+@ASSESSME.LANGUAGE: JAVA
+@ASSESSME.ANALYZE: YES
+*/
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
