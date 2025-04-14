@@ -57,15 +57,21 @@ to code this any way you want as long as the threads run concurrently.
 
 */
 
+import java.util.ArrayList;
 
 public class SimpleThreading {
     private int counter;
     private Object lock;
+    private ArrayList<Thread> list;
    
     public SimpleThreading() throws InterruptedException {
         this.counter = 90;
         this.lock = new Object();
+        this.list = new ArrayList<>();
 
+        System.out.println("Main: at start counter = " + counter);
+
+        /* Correct but poor 
         Thread t1 = new Thread(new MyThread(1));
         Thread t2 = new Thread(new MyThread(2));
         Thread t3 = new Thread(new MyThread(3));
@@ -83,6 +89,20 @@ public class SimpleThreading {
         t3.join();
         t4.join();
         t5.join();
+        */
+
+        //BETTER:
+        for(int i=1; i<=5; i++) {
+            Thread thread = new Thread(new MyThread(i));
+            thread.start();
+            list.add(thread);
+        }
+
+        for(Thread thread : list) {
+            thread.join();
+        }
+
+        System.out.println("Main: at end counter = " + counter);
       
     }
 

@@ -5,6 +5,7 @@
 @ASSESSME.ANALYZE: YES
 */
 
+
 public class FunWithThreads2 {
 
     //Constructor of FunWithThreads
@@ -20,6 +21,8 @@ public class FunWithThreads2 {
 
         t2.start();
 
+        t1.join();
+    
         System.out.println("MAIN END");
 
     }
@@ -48,9 +51,9 @@ public class FunWithThreads2 {
 
             System.out.println("Thread end: Thread " + this.name);
         }
-        
     }
 
+    
     public static void main(String[] args) throws Exception {
         
         new FunWithThreads2();

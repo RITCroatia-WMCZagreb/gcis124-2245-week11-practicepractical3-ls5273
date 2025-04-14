@@ -5,12 +5,10 @@
 @ASSESSME.ANALYZE: YES
 */
 
-//NOTIFY AND DEAD LOCK
-
 public class FunWithThreads1 {
 
     //Constructor of FunWithThreads
-    public FunWithThreads1(){
+    public FunWithThreads1() {
         //Running in the constructor
         System.out.println("MAIN START");
 
@@ -43,6 +41,8 @@ public class FunWithThreads1 {
 
     //MAIN  
     public static void main(String[] args) throws Exception {
+
+        new FunWithThreads1();
         
         /* 
         Running in the main
